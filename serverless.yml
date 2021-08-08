@@ -1,0 +1,22 @@
+org: arnold2me
+app: my-first-app
+service: sls-response-bot
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+
+functions:
+  router:
+    handler: handler.probot
+
+    environment:
+      WEBHOOK_SECRET: secret
+      APP_ID: 72937
+      LOG_FORMAT: json
+
+    events:
+      - http:
+          path: /probot
+          method: post
